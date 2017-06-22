@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Product } from '../product';
 
@@ -11,6 +12,8 @@ export class ProductComponent {
 
   @Input() data: Product;
 
+  @Output() clickProduct = new EventEmitter<Product>();
+
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
   | Green Path                                                       |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -21,5 +24,9 @@ export class ProductComponent {
   | de este componente, necesitas, además, un manejador para el      |
   | mismo.                                                           |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+  onProduct(data: Product): void{
+    this.clickProduct.emit(data);
+  }
 
 }

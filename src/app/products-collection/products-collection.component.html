@@ -4,6 +4,7 @@
   </div>
   <div *ngIf="products?.length > 0" class="small-up-2 medium-up-4 large-up-6">
 
+
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Green Path                                                       |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -14,7 +15,8 @@
     <app-product
       *ngFor="let product of products"
       [data]="product"
-      class="column">
+      class="column"
+      (clickProduct)="showProduct($event)">
     </app-product>
   </div>
   <div *ngIf="products?.length === 0" class="text-center">
