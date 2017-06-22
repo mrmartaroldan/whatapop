@@ -16,6 +16,12 @@ export class ProductService {
 
   getProducts(filter: ProductFilter = undefined): Observable<Product[]> {
 
+    //console.log(`${this._backendUri}/products?_sort=publishedDate&_order=DESC?&&q=${filter.text}`);
+    return this._http
+    .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC?&&q=${filter.text}`)
+    .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
+    
+
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Pink Path                                                        |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -59,9 +65,7 @@ export class ProductService {
     |       state=x (siendo x el estado)                               |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-    return this._http
-      .get(`${this._backendUri}/products`)
-      .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
+
   }
 
   getProduct(productId: number): Observable<Product> {

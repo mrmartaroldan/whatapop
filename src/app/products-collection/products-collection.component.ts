@@ -33,6 +33,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   }
 
   filterCollection(filter: ProductFilter): void {
+    this._productService.getProducts(filter)
     this._filterStream$.next(filter);
   }
 
