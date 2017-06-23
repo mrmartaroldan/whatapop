@@ -1,13 +1,6 @@
 <div *ngIf="data">
   <img [src]="data.photo" class="thumbnail" />
 
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Green Path                                                       |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Un clic en el botón de compra debería enviar un evento al        |
-  | componente padre.                                                |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
   <button
     (click)="onProduct(data)"
     class="button expanded"

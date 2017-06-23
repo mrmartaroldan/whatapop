@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -14,14 +14,26 @@ export class ProductService {
     private _http: Http,
     @Inject(BackendUri) private _backendUri) { }
 
-  getProducts(filter: ProductFilter = undefined): Observable<Product[]> {
+  getProducts(filter: ProductFilter): Observable<Product[]> {
 
-    //console.log(`${this._backendUri}/products?_sort=publishedDate&_order=DESC?&&q=${filter.text}`);
-    return this._http
-    .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC?&&q=${filter.text}`)
-    .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
-    
+      let params = new URLSearchParams();
+      params.set('_order', 'DESC');
+      params.set('_sort', 'publishedDate');
+      params.set('q', `${filter.text}`); 
+      if (`${filter.category}`) {
+        params.set('category.id', `${filter.category}`); 
+      }
 
+      let options = new RequestOptions();
+      options.search = params;
+
+      //console.log(`${this._backendUri}/products?_sort=publishedDate&_order=DESC?&&q=${filter.text}?&&category.id=${filter.category}`);
+      
+      return this._http
+        //.get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&q=${filter.text}&category.id=${filter.category}`)
+        .get(`${this._backendUri}/products`, {search: options})
+        .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
+      
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Pink Path                                                        |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -64,7 +76,6 @@ export class ProductService {
     |   - Búsqueda por estado:                                         |
     |       state=x (siendo x el estado)                               |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 
   }
 

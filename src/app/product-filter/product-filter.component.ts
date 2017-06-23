@@ -14,7 +14,7 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
 
   @Output() onSearch: EventEmitter<ProductFilter> = new EventEmitter();
 
-  productFilter: ProductFilter = {};
+  productFilter: ProductFilter = {text: ''};
   categories: Category[];
   private _categoriesSubscription: Subscription;
 
@@ -31,8 +31,7 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
   }
 
   notifyHost(): void {
-    console.log("Entra en buscar");
-    //this.onSearch.emit(filter);
+    console.log(this.productFilter);
     this.onSearch.emit(this.productFilter);
   }
 

@@ -25,7 +25,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
     this._filterStream$
       .switchMap((filter: ProductFilter) => this._productService.getProducts(filter))
       .subscribe((products: Product[]) => this.products = products);
-    this.filterCollection(null);
+      this.filterCollection(null);
   }
 
   ngOnDestroy(): void {
@@ -33,19 +33,8 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   }
 
   filterCollection(filter: ProductFilter): void {
-    this._productService.getProducts(filter)
     this._filterStream$.next(filter);
   }
-
-  /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Green Path                                                       |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Maneja el evento del componente ProductComponent que indica la   |
-  | selección de un producto y navega a la dirección correspondiente.|
-  | Recuerda que para hacer esto necesitas inyectar como dependencia |
-  | el Router de la app. La ruta a navegar es '/products', pasando   |
-  | como parámetro el identificador del producto.                    |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     showProduct(data: Product): void{
       this._router.navigate(['/products/', data.id]);
