@@ -8,21 +8,13 @@
   | componente padre.                                                |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Purple Path                                                      |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Aplica el siguiente formato al precio del producto:              |
-  |   - 1 dígito mínimo (parte entera)                               |
-  |   - 2 dígitos mínimo y máximo (parte decimal)                    |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
   <button
     (click)="onProduct(data)"
     class="button expanded"
     [class.success]="data.state === 'selling'"
     [class.secondary]="data.state === 'sold'">
       <span *ngIf="data.state === 'selling'">
-        Comprar por {{ data.price }} €
+        <p>Comprar por {{ data.price | number: '1.2-2' }} €</p>
       </span>
       <span *ngIf="data.state === 'sold'">
         Ver detalles
