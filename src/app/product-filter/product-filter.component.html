@@ -1,10 +1,10 @@
 <div>
   <div class="row">
     <div class="small-6 medium-2 large-3 columns">
-      <input [(ngModel)]="productFilter.text" type="text" placeholder="Pe. Uncharted">
+      <input [(ngModel)]="productFilter.text" type="text" placeholder="Pe. Uncharted" id="text">
     </div>
     <div class="small-6 medium-2 large-3 columns">
-      <select [(ngModel)]="productFilter.category">
+      <select [(ngModel)]="productFilter.category" id="category">
         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
       </select>
     </div>
@@ -12,4 +12,30 @@
       <button (click)="notifyHost()" class="button expanded">Buscar</button>
     </div>
   </div>
+  <div ng-controller="AccordionDemoCtrl">
+      <accordion>
+        <accordion-group is-open="group.open">
+          <accordion-heading >
+            <accordion-toggle >Búsqueda Avanzada</accordion-toggle>
+          </accordion-heading>
+            <div class="row">
+              <div class="small-2 large-3 columns">
+                <input [(ngModel)]="productFilter.priceMin" type="number" placeholder="0">
+              </div>
+              <div class="small-4 large-3 columns">
+                <input [(ngModel)]="productFilter.priceMax" type="number" placeholder="999">
+              </div>
+              <div class="small-6 large-3 columns">
+                <select [(ngModel)]="productFilter.order" id="order">
+                  <option value="precio">Precio</option>
+                  <option value="titulo">Título</option>
+                </select>
+              </div>
+              <div class="small-6 large-3 columns">
+                <ui-switch [(ngModel)]="productFilter.state"size="medium"></ui-switch>
+              </div>
+            </div>
+        </accordion-group>    
+      </accordion>
+    </div>
 </div>

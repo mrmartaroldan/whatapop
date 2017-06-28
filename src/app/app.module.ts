@@ -1,8 +1,11 @@
+import { UiSwitchModule } from 'angular2-ui-switch';
+import { SwitchComponent } from 'angular2-bootstrap-switch/components';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AccordionModule } from "ngx-accordion";
 
 import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 
@@ -22,6 +25,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserService } from './user.service';
 import { PublicationDatePipe } from './publication-date.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,8 @@ import { PublicationDatePipe } from './publication-date.pipe';
     ProductComponent,
     ProductsCollectionComponent,
     UserProfileComponent,
-    PublicationDatePipe
+    PublicationDatePipe,
+    SwitchComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import { PublicationDatePipe } from './publication-date.pipe';
     FormsModule,
     HttpModule,
     ConfirmDialogModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AccordionModule,
+    UiSwitchModule
   ],
   providers: [
     BackendUriProvider,
