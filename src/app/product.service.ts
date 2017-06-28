@@ -20,15 +20,15 @@ export class ProductService {
       params.set('_order', 'DESC');
       params.set('_sort', 'publishedDate');
 
-    if(filter){
+    if(filter && filter != null){
 
-      if(filter.text){
+      if(filter.text && filter.text != null){
         params.set('q', filter.text); 
       }
-      if (filter.category) {
+      if (filter.category && filter.category != null) {
         params.set('category.id', filter.category); 
       }
-      if (filter.state){
+      if (filter.state && filter.state != null){
         params.set('state', filter.state);
       }
     }
