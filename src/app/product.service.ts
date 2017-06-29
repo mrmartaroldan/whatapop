@@ -11,6 +11,7 @@ import { ProductFilter } from './product-filter';
 export class ProductService {
 
   constructor(
+
     private _http: Http,
     @Inject(BackendUri) private _backendUri) { }
 
@@ -29,9 +30,7 @@ export class ProductService {
       if (filter.category && filter.category != null) {
         params.set('category.id', filter.category); 
       }
-      if (filter.state && filter.state != null){
-        params.set('state', filter.state);
-      }
+
       if (filter.priceMin && filter.priceMin != null && filter.priceMax === '' ){
         params.set('price_gte', `${filter.priceMin}`);
         params.set('_order', 'ASC');
@@ -47,6 +46,11 @@ export class ProductService {
         params.set('price_lte', `${filter.priceMax}`);
         params.set('_order', 'ASC');
         params.set('_sort', 'price');
+      }
+        params.set('state', filter.state);
+      if (filter.order && filter.order != null){
+        params.set('_order', 'ASC');
+        params.set('_sort', filter.order);
       }
     }
 

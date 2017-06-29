@@ -1,4 +1,3 @@
-import { UiSwitchModule } from 'angular2-ui-switch';
 import { SwitchComponent } from 'angular2-bootstrap-switch/components';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AccordionModule } from "ngx-accordion";
 
-import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
+import { ConfirmDialogModule, ConfirmationService, InputSwitchModule, DropdownModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +45,8 @@ import { PublicationDatePipe } from './publication-date.pipe';
     ConfirmDialogModule,
     AppRoutingModule,
     AccordionModule,
-    UiSwitchModule
+    InputSwitchModule,
+    DropdownModule
   ],
   providers: [
     BackendUriProvider,
