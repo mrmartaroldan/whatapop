@@ -22,14 +22,9 @@ export class ProductService {
       params.set('_sort', 'publishedDate');
 
     if(filter && filter != null){
-      console.log(filter);
 
-      if(filter.text && filter.text != null){
         params.set('q', filter.text); 
-      }
-      if (filter.category && filter.category != null) {
         params.set('category.id', filter.category); 
-      }
 
       if (filter.priceMin && filter.priceMin != null && filter.priceMax === '' ){
         params.set('price_gte', `${filter.priceMin}`);

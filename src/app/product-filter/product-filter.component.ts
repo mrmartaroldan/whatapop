@@ -43,7 +43,6 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
 
   handleChange(switchValue) {
     this.productFilter.state = switchValue.checked ? 'selling' : 'sold';
-     console.log(switchValue, this.productFilter.state);
   }
 
 }
