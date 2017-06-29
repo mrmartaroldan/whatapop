@@ -25,24 +25,27 @@ export class ProductService {
 
         params.set('q', filter.text); 
         params.set('category.id', filter.category); 
+        params.set('state', filter.state);
 
       if (filter.priceMin && filter.priceMin != null && filter.priceMax === '' ){
         params.set('price_gte', `${filter.priceMin}`);
         params.set('_order', 'ASC');
         params.set('_sort', 'price');
       }
+
       if (filter.priceMax && filter.priceMax != null && filter.priceMin === '' ){
         params.set('price_lte', `${filter.priceMax}`);
         params.set('_order', 'ASC');
         params.set('_sort', 'price');
       }
+      
       if (filter.priceMax && filter.priceMax != null && filter.priceMin && filter.priceMin != null ){
         params.set('price_gte', `${filter.priceMin}`);
         params.set('price_lte', `${filter.priceMax}`);
         params.set('_order', 'ASC');
         params.set('_sort', 'price');
       }
-        params.set('state', filter.state);
+
       if (filter.order && filter.order != null){
         params.set('_order', 'ASC');
         params.set('_sort', filter.order);
