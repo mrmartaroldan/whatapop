@@ -27,13 +27,13 @@ export class ProductService {
         params.set('category.id', filter.category); 
         params.set('state', filter.state);
 
-      if (filter.priceMin && filter.priceMin != null && filter.priceMax === '' ){
+      if (filter.priceMin && !filter.priceMax){
         params.set('price_gte', `${filter.priceMin}`);
         params.set('_order', 'ASC');
         params.set('_sort', 'price');
       }
 
-      if (filter.priceMax && filter.priceMax != null && filter.priceMin === '' ){
+      if (filter.priceMax && !filter.priceMin){
         params.set('price_lte', `${filter.priceMax}`);
         params.set('_order', 'ASC');
         params.set('_sort', 'price');
